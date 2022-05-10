@@ -14,7 +14,6 @@ class SearchService{
             $profile['score'] = 0;
             $profile['strictMatchesCount'] = 0;
             $profile['looseMatchesCount'] = 0;
-            $profile['searchProfileId'] = $profile['id'];
 
             $searchFields = $profile['searchFields'];
 
@@ -22,7 +21,7 @@ class SearchService{
                 // search through each field of the property to find matches per profile
                 
                 if (array_key_exists($propKey, $searchFields)){
-                    // $matchingProfiles
+                    
                     if ($this->isStrictMatch($searchFields[$propKey], $propertyField)){
                         $profile['score'] += 2;
                         $profile['strictMatchesCount'] += 1;
@@ -33,7 +32,13 @@ class SearchService{
                 }
             }
             if ($profile['score'] > 0){
-                array_push($matchingProfiles, $profile);
+                $matchedProfile = [
+                    'searchProfileId' => $profile['id'],
+                    'score' => $profile['score'],
+                    'strictMatchesCount' => $profile['strictMatchesCount'],
+                    'looseMatchesCount' => $profile['looseMatchesCount'],
+                ];
+                array_push($matchingProfiles, $matchedProfile);
             }
         }
 
