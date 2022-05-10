@@ -14,6 +14,12 @@ Fill in the database details in the .env file
 
 Note: You can also use the prepackage sqlite db by setting the `DB_CONNECTION` value to `sqlite`
 
+Run `php artisan migrate` to setup the database tables
+
+## Seeding data
+
+Run `php artisan db:seed` to get some seed data you can work with.
+
 ## Testing
 
 To run the app tests, run the command `php artisan test`
